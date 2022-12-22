@@ -9,35 +9,25 @@
  * }
  */
 class Solution {
-    public static ListNode indexPlacing(ListNode head, ListNode item, int index) {
-        ListNode temp = head;
-        while (index > 1) {
-            temp = temp.next;
-            index--;
-        }
-        ListNode curr = temp.next;
-        temp.next = item;
-        item.next = curr;
-        return head;
-    }
-
     public static ListNode partition(ListNode head, int x) {
         if (head == null || head.next == null)
             return head;
         ListNode dummyhead = new ListNode(0);
-        int left = 1, right = 1;
         ListNode temp = head;
+        ListNode left = dummyhead, right = dummyhead;
         while (temp != null) {
             ListNode item = new ListNode(temp.val);
             if (item.val < x) {
-                // function call to add in the left
-                dummyhead = indexPlacing(dummyhead, item, left);
-                left++;
-                right += 1;
+                ListNode curr = left.next;
+                left.next = item;
+                item.next = curr;
+                left = left.next;
+                right = (right.next)!=null?right.next:right;
             } else {
-                // function call to add in the rigth
-                dummyhead = indexPlacing(dummyhead, item, right);
-                right++;
+                ListNode curr = right.next;
+                right.next = item;
+                item.next = curr;
+                right = right.next;
             }
             temp = temp.next;
         }
