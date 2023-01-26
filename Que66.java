@@ -21,7 +21,7 @@ public class Que66 {
 
     public static void main(String[] args) {
         Que66 obj = new Que66();
-        int arr[] = { 9 };
+        int arr[] = { 9 ,8};
         int a[] = obj.plusOne(arr);
         for (int i = 0; i < a.length; i++) {
             System.out.print(a[i] + " ");
