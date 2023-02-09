@@ -30,4 +30,27 @@ class Solution {
 
         return str;
     }
+    // Better solution 
+    class Solution {
+    public String tree2str(TreeNode root) {
+        if(root == null)
+            return "";
+        String str = Integer.toString(root.val);
+        
+        if(root.left == null && root.right == null)
+            return str;
+
+        str += "(";
+        str += tree2str(root.left);
+        str += ")";
+        
+        if(root.right != null){
+            str += "(";
+            str += tree2str(root.right);
+            str += ")";
+        }
+
+        return str;
+    }
+}
 }
