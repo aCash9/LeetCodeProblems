@@ -14,23 +14,31 @@
  * }
  */
 class Solution {
-    public void endnodes(TreeNode root){
+    public void endnodes(TreeNode root,ArrayList<Integer> l){
         if(root == null){
-            endNodes.add(null);
             return;
         }
         if(root.left == null && root.right == null){
-            endNodes.add(root.val);
+            l.add(root.val);
             return;
         }
-        endnodes(root.left);
-        endnodes(root.right);
+        endnodes(root.left,l);
+        endnodes(root.right,l);
     }
     
     public boolean leafSimilar(TreeNode root1, TreeNode root2) {
-        endnodes(root1);
-        endnodes(root2);
-
+        ArrayList<Integer> l1 = new ArrayList<>();
+        ArrayList<Integer> l2 = new ArrayList<>();
+        endnodes(root1,l1);
+        endnodes(root2,l2);
+        if(l1.size() != l2.size())
+            return false;
+        else {
+            for(int i = 0; i < l1.size(); i++){
+                if(l1.get(i) != l2.get(i))
+                    return false;
+            }
+        }
         return true;
     }
 }
