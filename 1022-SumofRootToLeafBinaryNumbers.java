@@ -57,3 +57,21 @@ class Solution {
         return sum;
     }
 }
+// better Solution
+class Solution {
+    public int totalSum = 0;
+    public void sum(TreeNode root, int num){
+        if(root != null){
+            num = (num << 1) | root.val;
+            if(root.left == null && root.right == null){
+                totalSum += num;
+            }
+            sum(root.left,num);
+            sum(root.right,num);
+        }
+    }
+    public int sumRootToLeaf(TreeNode root) {
+        sum(root, 0);
+        return totalSum;
+    }
+}
