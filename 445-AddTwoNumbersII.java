@@ -43,13 +43,6 @@ class Solution {
             l2 = l2.next;
         }
 
-        if(l1 == null && l2 == null) {
-            if(carry != 0){
-                ListNode car = new ListNode(1);
-                temp.next = car;
-            }
-            return reverseList(l3);
-        }
         while(l1 != null) {
             ListNode curr = new ListNode((l1.val + carry) % 10);
             temp.next = curr;
