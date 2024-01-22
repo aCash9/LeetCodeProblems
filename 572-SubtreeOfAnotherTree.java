@@ -14,26 +14,22 @@
  * }
  */
 class Solution {
-    public boolean sametree(TreeNode root, TreeNode subRoot){
-        if(root == null && subRoot == null)     
-            return true;
-        
-        if(root == null || subRoot == null)
-            return false;
-        
-        if(root.val != subRoot.val)
-            return false;
-        
-        return sametree(root.left,subRoot.left) && sametree(root.right,subRoot.right); 
+    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
+        if(root == null && subRoot == null) return true;
+        if(root == null) return false;
+
+        if(root.val == subRoot.val) return isSameTree(root, subRoot) ||  isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);
+
+        return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot);    
     }
 
-    public boolean isSubtree(TreeNode root, TreeNode subRoot) {
-        if(root == null)
-            return false;
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if(p == null && q == null)  return true;
+        if(p != null && q == null)  return false;
+        if(p == null && q != null)  return false;
 
-        if(sametree(root,subRoot))
-            return true;
-        
-        return isSubtree(root.left,subRoot) || isSubtree(root.right,subRoot);
+        if(p.val != q.val)  return false;
+
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
     }
 }
